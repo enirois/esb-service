@@ -41,7 +41,7 @@ public class clientController {  // Renombrado a ClientController
         
         // Enviar petición al servicio de clientes
         String response = webClient.post()
-            .uri("http://localhost:5003/app/clients/create")
+            .uri("http://clients.railway.internal:5003/app/clients/create")
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
             .body(BodyInserters.fromValue(client))
             .retrieve()
@@ -63,7 +63,7 @@ public class clientController {  // Renombrado a ClientController
         }
 
         String response = webClient.get()
-            .uri("http://localhost:5003/app/clients/all")
+            .uri("http://clients.railway.internal:5003/app/clients/all")
             .retrieve()
             .bodyToMono(String.class)
             .doOnError(error -> System.out.println("Error: " + error.getMessage()))
@@ -86,7 +86,7 @@ public class clientController {  // Renombrado a ClientController
         }
 
         String response = webClient.patch()  // Usamos PATCH en lugar de POST
-            .uri("http://localhost:5003/app/clients/update/" + id)  // Coincide con la ruta del backend
+            .uri("http://clients.railway.internal:5003/app/clients/update/" + id)  // Coincide con la ruta del backend
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
             .body(BodyInserters.fromValue(client))
             .retrieve()
@@ -109,7 +109,7 @@ public class clientController {  // Renombrado a ClientController
         }
 
         String response = webClient.patch()  // Usamos DELETE en lugar de POST
-            .uri("http://localhost:5003/app/clients/delete/" + id)  // Coincide con la ruta del backend
+            .uri("http://clients.railway.internal:5003/app/clients/delete/" + id)  // Coincide con la ruta del backend
             .retrieve()
             .bodyToMono(String.class)
             .doOnError(error -> System.out.println("Error: " + error.getMessage()))
